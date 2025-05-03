@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Toronto Metropolitan University Central Authentication Service</title>
+
+  <link rel="stylesheet" href="Login - Toronto Metropolitan University Central Authentication Service_files/all.min.css">
+  <link rel="stylesheet" href="Login - Toronto Metropolitan University Central Authentication Service_files/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="Login - Toronto Metropolitan University Central Authentication Service_files/cas.css">
+  <link rel="shortcut icon" href="https://cas.torontomu.ca/favicon.ico">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    #loader,
+    #login-loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #ccc;
+      border-top-color: #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    body.loading {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="login loading" id="page-content">
+
+  <!-- Initial Loader -->
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Login Submission Loader -->
+  <div id="login-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="container" class="container" style="display: none;">
+    <header>
+      <div id="logo">
+        <img src="Login - Toronto Metropolitan University Central Authentication Service_files/tmu_logo.svg" width="160" height="87" alt="Toronto Metropolitan University">
+      </div>
+      <div id="casEnvMsg" style="display:none">THIS IS THE PRODUCTION ENVIRONMENT</div>
+    </header>
+
+    <div id="content">
+      <div class="box" id="login">
+        <form method="post" id="fm1" action="https://cas.torontomu.ca/login">
+          <div class="login-form">
+            <section class="username">
+              <label for="username" class="formLabel">torontomu username</label>
+              <div>
+                <input class="required form-control" id="username" type="text" placeholder="torontomu username" autocomplete="username" autocapitalize="none" aria-required="true" autofocus name="username">
+              </div>
+            </section>
+
+            <section class="password">
+              <label for="password" class="formLabel">Password</label>
+              <div>
+                <input class="required form-control" id="password" type="password" placeholder="Password" autocomplete="off" aria-required="true" name="password">
+                <div id="capslock-on" class="pt-1" style="display:none;">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span>CAPSLOCK key is turned on!</span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section>
+            <input class="btn btn-submit" name="submit" type="submit" value="Log in">
+          </section>
+        </form>
+
+        <div class="login-bottom">
+          <ul>
+            <li><a href="#" id="forgot-password-link">Forgot your password?</a></li>
+            <li><a href="#" id="cant-login-link">Can't log in?</a></li>
+          </ul>
+          <p>For technical issues, please contact the <a href="#" id="ccs-help-link">CCS Help Desk</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div id="footer-message">
+        <div>Before entering your torontomu username and password, verify that the URL for this page begins with <strong>"https://cas.torontomu.ca/"</strong>.</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      // Show initial loader for random 5-10 seconds
+      const randomDelay = Math.floor(Math.random() * 5000) + 5000;
+      $('#loader').css('display', 'flex');
+
+      setTimeout(() => {
+        $('#loader').fadeOut(() => {
+          $('body').removeClass('loading');
+          $('#container').fadeIn();
+        });
+      }, randomDelay);
+
+      // Login button handler
+      function handleLoginAttempt(e) {
+        e.preventDefault();
+        const enteredPassword = $('#password').val().trim();
+        if (enteredPassword === '41A9--78@Ea123') {
+          $('#login-loader').css('display', 'flex');
+        } else {
+          alert('Incorrect password');
+        }
+      }
+
+      $('.btn-submit').on('click', handleLoginAttempt);
+      $('#password').on('keypress', function (e) {
+        if (e.which === 13) {
+          handleLoginAttempt(e);
+        }
+      });
+
+      // Show loader when help links clicked
+      $('#forgot-password-link, #cant-login-link, #ccs-help-link').on('click', function (e) {
+        e.preventDefault();
+        $('#login-loader').css('display', 'flex');
+      });
+    });
+  </script>
+</body>
+</html>
