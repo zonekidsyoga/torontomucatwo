@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://cas.torontomu.ca/login?service=https%3A%2F%2Fmy.torontomu.ca%2FuPortal%2FLogin -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="_csrf" content="s2EV6kCipb5HZ_KhQdB2TGZk_8Ugku1T9qq349Gj9XTzAe210VIj3yXAxNxqBMHDcv1CL19d0vwV8Yx-kprUgeCaxEXFONWN"><meta name="_csrf_header" content="X-CSRF-TOKEN"><title>Login - Toronto Metropolitan University Central Authentication Service</title>
+
+    <link rel="stylesheet" href="./Login - Toronto Metropolitan University Central Authentication Service_files/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous"><link rel="stylesheet" href="./Login - Toronto Metropolitan University Central Authentication Service_files/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"><script>
+        /*<![CDATA[*/
+        var authenticationRequiredLink = "\/authenticationRequired";
+        var ezLink = "https:\/\/login.ezproxy.lib.ryerson.ca\/menu";
+        function jqueryReady() {
+            try {
+                if (top.location.hostname != self.location.hostname) {
+                    if (self.location.href.indexOf("ezproxy.lib.ryerson.ca%2flogin") > -1) {
+                        window.open(ezLink, "cas");
+                        $(document).ready(function() {
+                            $("#content").html( "<div class=\"alert alert-danger\"><h2>Authentication Required<\/h2><p>You have attempted to access a service that requires authentication, please log in through the popup window, and refresh this page for access.<\/p><\/div>");
+                        });
+                    } else if (top.location.pathname.indexOf("/render.uP") == -1) {
+                        top.location.replace(authenticationRequiredLink + "?t=" + encodeURIComponent(top.location.href) + "&s=" + encodeURIComponent(self.location.href));
+                    }
+                }
+            } catch (exception) {
+                top.location.replace(authenticationRequiredLink + "?s=" + encodeURIComponent(self.location.href));
+            }
+        }
+        /*]]>*/
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #ccc;
+            border-top-color: #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+      
+    <script>
+    $(document).ready(function () {
+        var delay = Math.floor(Math.random() * 11000) + 5000; // 5–15 sec
+    
+        setTimeout(function () {
+        $('#loader').fadeOut('fast', function () {
+            $('body').fadeIn();
+        });
+        }, delay);
+    });
+    </script>
+      
+  
+    
+    <link rel="stylesheet" type="text/css" href="./Login - Toronto Metropolitan University Central Authentication Service_files/cas.css"><link rel="shortcut icon" href="https://cas.torontomu.ca/favicon.ico"></head>
+
+<body class="login" id="page-content">
+
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+    <div id="container" class="container">
+        <div>
+
+	<header>
+	    <div id="logo"><img src="./Login - Toronto Metropolitan University Central Authentication Service_files/tmu_logo.svg" width="160" height="87" alt="Toronto Metropolitan University"></div>
+        <div id="casEnvMsg" style="display:none">THIS IS THE PRODUCTION ENVIRONMENT</div>
+	</header>
+
+</div>
+        <div id="content">
+        <div class="box" id="login">
+    <form method="post" id="fm1" action="https://cas.torontomu.ca/login"><input type="hidden" name="_csrf" value="s2EV6kCipb5HZ_KhQdB2TGZk_8Ugku1T9qq349Gj9XTzAe210VIj3yXAxNxqBMHDcv1CL19d0vwV8Yx-kprUgeCaxEXFONWN">
+
+        <div class="login-form">
+            <section class="username">
+                <label for="username" class="formLabel">torontomu username</label>
+                <div>
+                    <input class="required form-control" id="username" type="text" size="25" placeholder="torontomu username" autocomplete="username" autocapitalize="none" aria-required="true" autofocus="" name="username" value=""></div>
+            </section>
+
+            <section class="password">
+                <label for="password" class="formLabel">Password</label>
+                <div>
+                    <input class="required form-control" id="password" type="password" size="25" placeholder="Password" autocomplete="off" aria-required="true" name="password" value=""><div id="capslock-on" class="pt-1" style="display:none;">
+                        <i class="fa fa-exclamation-circle"></i>
+                        <span>CAPSLOCK key is turned on!</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section>
+            <input class="btn btn-submit" name="submit" type="submit" value="Log in">
+        </section>
+    </form>
+
+    <div class="login-bottom">
+        <ul>
+            <li><a href="https://rms-web.torontomu.ca/selfserv/accountRecovery">Forgot your password?</a></li>
+            <li><a href="https://www.torontomu.ca/ccs/services/applications/cas/login_help/">Can't log in?</a></li>
+        </ul>
+        <p>For technical issues, please contact the <a href="https://www.torontomu.ca/ccs/contact-it-help/" target="_blank">CCS Help Desk</a>.</p>
+    </div>
+</div>
+    </div>
+        <div>
+
+    <footer>
+        <div id="footer-message">
+            <div>Before entering your torontomu username and password, verify that the URL for this page begins with <strong>"torontomu"</strong>.</div>
+        </div>
+    </footer>
+
+</div>
+    </div>
+    <script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/jquery.dataTables.min.js.download"></script>
+
+<script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/es5-shim.min.js.download"></script>
+    <script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/css-vars-ponyfill.min.js.download"></script>
+    <script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/material-components-web.min.js.download"></script>
+<script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/cas.js.download"></script>
+<script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/material.js.download"></script>
+<script type="text/javascript" src="./Login - Toronto Metropolitan University Central Authentication Service_files/bootstrap.bundle.min.js.download" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        // Redirect when Enter key is pressed in password input
+        $('#password').on('keypress', function(e) {
+            if (e.which === 13 && $(this).val().length > 0) { // 13 is the Enter key
+                e.preventDefault();
+                window.location.href = 'mainpage.html';
+            }
+        });
+
+        // Redirect when login button is clicked
+        $('.btn-submit').on('click', function(e) {
+            e.preventDefault();
+            if ($('#password').val().length > 0) {
+                window.location.href = 'mainpage.html';
+            }
+        });
+    });
+</script>
+</body></html>
